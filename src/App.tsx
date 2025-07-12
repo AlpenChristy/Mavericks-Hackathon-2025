@@ -12,6 +12,8 @@ import AddItem from './pages/AddItem';
 import Admin from './pages/Admin';
 import Favorites from './pages/Favorites';
 import UserProfile from './pages/UserProfile';
+import UserProfileEdit from './pages/UserProfileEdit';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/user/:id" element={<UserProfile />} />
+            <Route path="/profile/edit" element={<UserProfileEdit />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>

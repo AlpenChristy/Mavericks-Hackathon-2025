@@ -446,28 +446,30 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Profile Card */}
-        <div className="bg-white rounded-lg p-8 shadow-sm mb-8 border border-neutral-200">
-          <div className="flex items-center space-x-6">
-            <div className="w-20 h-20 bg-neutral-100 rounded-full flex items-center justify-center">
+        <div className="bg-white rounded-lg shadow-sm p-8 border border-neutral-200 flex items-center justify-between mb-8">
+          <div className="flex items-center">
+            <div className="w-20 h-20 rounded-full bg-neutral-100 flex items-center justify-center mr-8">
               {profile.avatar_url ? (
-                <img 
-                  src={profile.avatar_url} 
-                  alt={profile.name}
-                  className="w-20 h-20 rounded-full object-cover"
-                />
+                <img src={profile.avatar_url} alt={profile.name} className="w-full h-full object-cover rounded-full" />
               ) : (
-                <User className="h-10 w-10 text-neutral-600" />
+                <User className="h-10 w-10 text-neutral-400" />
               )}
             </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-semibold text-black">{profile.name}</h2>
-              <p className="text-neutral-600">{profile.email}</p>
-              <p className="text-sm text-neutral-500">Member since {new Date(profile.joined_date).getFullYear()}</p>
+            <div>
+              <h2 className="text-2xl font-bold text-black mb-1">{profile.name}</h2>
+              <p className="text-neutral-600 mb-1">{profile.email}</p>
+              <p className="text-neutral-500 text-sm">Member since {new Date(profile.joined_date).getFullYear()}</p>
             </div>
-            <div className="text-right">
-              <div className="text-3xl font-bold text-black">{profile.points}</div>
-              <div className="text-sm text-neutral-600">Available Points</div>
-            </div>
+          </div>
+          <div className="flex flex-col items-end">
+            <span className="text-3xl font-bold text-black mb-1">{profile.points}</span>
+            <span className="text-neutral-600 text-sm">Available Points</span>
+            <Link
+              to="/profile/edit"
+              className="mt-4 px-4 py-2 bg-black text-white rounded-lg font-medium hover:bg-neutral-800 transition-all duration-200 text-sm"
+            >
+              Edit Profile
+            </Link>
           </div>
         </div>
 

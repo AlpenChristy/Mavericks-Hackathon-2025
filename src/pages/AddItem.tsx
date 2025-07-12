@@ -51,6 +51,17 @@ const AddItem: React.FC = () => {
   const conditions = ['Excellent', 'Very Good', 'Good', 'Fair'];
   const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'One Size'];
 
+  const fixedCategories = [
+    'Outerwear',
+    'Tops',
+    'Bottoms',
+    'Dresses',
+    'Footwear',
+    'Accessories',
+    'Activewear',
+    'Formal',
+  ];
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -272,8 +283,8 @@ const AddItem: React.FC = () => {
                   className="w-full border border-neutral-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 bg-white"
                 >
                   <option value="">Select category</option>
-                  {categories.map(category => (
-                    <option key={category.id} value={category.name}>{category.name}</option>
+                  {fixedCategories.map(category => (
+                    <option key={category} value={category}>{category}</option>
                   ))}
                 </select>
               </div>

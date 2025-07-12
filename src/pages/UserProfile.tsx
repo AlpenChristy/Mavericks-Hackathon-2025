@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader2, User } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -10,6 +11,7 @@ const UserProfile: React.FC = () => {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { user: currentUser } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +76,16 @@ const UserProfile: React.FC = () => {
             {user.location && <p className="text-neutral-500">{user.location}</p>}
           </div>
         </div>
+        {currentUser && currentUser.id === user.id && (
+          <div className="mb-8 flex justify-end">
+            <a
+              href="/profile/edit"
+              className="inline-block bg-black text-white px-5 py-2 rounded-lg font-medium hover:bg-neutral-800 transition-all duration-200"
+            >
+              Edit Profile
+            </a>
+          </div>
+        )}
         <h2 className="text-2xl font-semibold text-black mb-6">Products</h2>
         {items.length === 0 ? (
           <div className="text-neutral-500">No products found.</div>

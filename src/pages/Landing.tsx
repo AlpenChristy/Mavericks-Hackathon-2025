@@ -8,6 +8,17 @@ const Landing: React.FC = () => {
   const { items: featuredItems, loading } = useItems();
   const displayItems = featuredItems.slice(0, 4);
 
+  const fixedCategories = [
+    'Outerwear',
+    'Tops',
+    'Bottoms',
+    'Dresses',
+    'Footwear',
+    'Accessories',
+    'Activewear',
+    'Formal',
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -108,6 +119,22 @@ const Landing: React.FC = () => {
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="max-w-5xl mx-auto py-12">
+        <h2 className="text-2xl font-bold text-black mb-6">Categories</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-6">
+          {fixedCategories.map(category => (
+            <a
+              key={category}
+              href={`/browse?category=${encodeURIComponent(category)}`}
+              className="block bg-white border border-neutral-200 rounded-lg shadow hover:shadow-md transition p-6 text-center font-semibold text-neutral-800 hover:bg-neutral-100"
+            >
+              {category}
+            </a>
+          ))}
         </div>
       </section>
 
