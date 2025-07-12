@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useParams, Navigate, Link, useSearchParams } from 'react-router-dom';
-import { Heart, Share2, ArrowLeft, Star, MessageCircle, Repeat, Coins, Loader2, User, Flag, Check, X } from 'lucide-react';
+import { Heart, Share2, ArrowLeft, Star, MessageCircle, Repeat, Coins, Loader2, User, Flag, Check, X, ArrowRight } from 'lucide-react';
 import { useItem } from '../hooks/useItems';
 import { useAuth } from '../context/AuthContext';
 import { useFavorites } from '../hooks/useFavorites';
 import { useItems } from '../hooks/useItems';
 import ReportModal from '../components/ReportModal';
+import ItemCard from '../components/ItemCard';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -16,6 +17,7 @@ const ItemDetail: React.FC = () => {
   const { item, loading, error } = useItem(id!);
   const { favorites, toggleFavorite } = useFavorites();
   const { items: myAvailableItems } = useItems({ userId: user?.id, status: 'available', approvalStatus: 'approved' });
+  const { items: trendingItems, loading: trendingLoading } = useItems();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [showSwapModal, setShowSwapModal] = useState(false);
   const [showRedeemModal, setShowRedeemModal] = useState(false);
@@ -454,6 +456,46 @@ const ItemDetail: React.FC = () => {
         reportedItemId={item.id}
         itemTitle={item.title}
       />
+
+      {/* Trending Now Section */}
+      <section className="py-20 bg-neutral-50 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-black mb-6">Trending Now</h2>
+            <p className="text-neutral-600 max-w-2xl mx-auto text-lg">
+              Discover unique pieces from our community. Each item is carefully curated and ready for its next chapter.
+            </p>
+          </div>
+          {trendingLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="bg-white rounded-lg overflow-hidden animate-pulse">
+                  <div className="aspect-[3/4] bg-neutral-200"></div>
+                  <div className="p-4">
+                    <div className="h-4 bg-neutral-200 rounded mb-2"></div>
+                    <div className="h-3 bg-neutral-200 rounded w-2/3"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {trendingItems.filter(i => i.id !== item.id).slice(0, 4).map((trending) => (
+                <ItemCard key={trending.id} item={trending} />
+              ))}
+            </div>
+          )}
+          <div className="text-center">
+            <Link
+              to="/browse"
+              className="inline-flex items-center text-black hover:text-neutral-600 font-medium text-lg group"
+            >
+              View All Items
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
