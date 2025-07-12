@@ -10,6 +10,8 @@ import ItemDetail from './pages/ItemDetail';
 import Dashboard from './pages/Dashboard';
 import AddItem from './pages/AddItem';
 import Admin from './pages/Admin';
+import Favorites from './pages/Favorites';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/add-item" element={<AddItem />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/user/:id" element={<UserProfile />} />
           </Routes>
         </div>
       </Router>

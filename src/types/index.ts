@@ -50,12 +50,22 @@ export interface SwapRequest {
   requester_name?: string;
   item_id: string;
   item_title?: string;
-  offered_item_id?: string;
+  item_images?: string[];
+  item_points_value?: number;
+  offered_item_ids?: string[];
+  item_uploader_id?: string;
+  offered_item_id?: string; // for legacy support
   offered_item_title?: string;
   message?: string;
   status: 'pending' | 'accepted' | 'declined' | 'completed';
   created_at: string;
   updated_at: string;
+  offered_items?: Array<{
+    id: string;
+    title: string;
+    images: string[];
+    points_value: number;
+  }>;
 }
 
 export interface PointTransaction {

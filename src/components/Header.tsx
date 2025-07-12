@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingBag, User, LogOut, Menu, X, Plus, Settings, Heart } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Header: React.FC = () => {
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -72,19 +73,24 @@ const Header: React.FC = () => {
                     <span className="font-medium">{profile.name}</span>
                   </button>
                   <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-neutral-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <Link 
-                      to="/dashboard" 
-                      className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors duration-200"
-                    >
-                      My Account
-                    </Link>
-                    <Link 
-                      to="/favorites" 
-                      className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors duration-200"
-                    >
-                      <Heart className="inline h-4 w-4 mr-2" />
-                      Favorites
-                    </Link>
+                    {/* Desktop Dropdown */}
+                    {location.pathname !== '/admin' && (
+                      <Link 
+                        to="/dashboard" 
+                        className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors duration-200"
+                      >
+                        My Account
+                      </Link>
+                    )}
+                    {location.pathname !== '/admin' && (
+                      <Link 
+                        to="/favorites" 
+                        className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors duration-200"
+                      >
+                        <Heart className="inline h-4 w-4 mr-2" />
+                        Favorites
+                      </Link>
+                    )}
                     {profile.role === 'admin' && (
                       <Link 
                         to="/admin" 
@@ -163,20 +169,25 @@ const Header: React.FC = () => {
                     <div className="text-sm font-semibold text-black">{profile.name}</div>
                     <div className="text-sm text-neutral-600">{profile.points} points</div>
                   </div>
-                  <Link
-                    to="/dashboard"
-                    className="block px-3 py-3 text-neutral-700 hover:text-black hover:bg-neutral-50 rounded-lg transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    My Account
-                  </Link>
-                  <Link
-                    to="/favorites"
-                    className="block px-3 py-3 text-neutral-700 hover:text-black hover:bg-neutral-50 rounded-lg transition-colors duration-200"
-                    onClick={closeMobileMenu}
-                  >
-                    Favorites
-                  </Link>
+                  {/* Mobile Dropdown */}
+                  {location.pathname !== '/admin' && (
+                    <Link
+                      to="/dashboard"
+                      className="block px-3 py-3 text-neutral-700 hover:text-black hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                      onClick={closeMobileMenu}
+                    >
+                      My Account
+                    </Link>
+                  )}
+                  {location.pathname !== '/admin' && (
+                    <Link
+                      to="/favorites"
+                      className="block px-3 py-3 text-neutral-700 hover:text-black hover:bg-neutral-50 rounded-lg transition-colors duration-200"
+                      onClick={closeMobileMenu}
+                    >
+                      Favorites
+                    </Link>
+                  )}
                   {profile.role === 'admin' && (
                     <Link
                       to="/admin"
