@@ -5,6 +5,12 @@ Welcome to *ReWear, an innovative platform designed to foster sustainable fashio
 
 ---
 
+## 🎥 Demo Video
+
+📺 [Watch the Project Demo](https://drive.google.com/file/d/1s4hY8tCCxfrUGkvLEan5E4pY68r7Cdff/view?usp=sharing)
+
+---
+
 ## 🧠 Team Information
 
 *Team Name:* Mavericks
