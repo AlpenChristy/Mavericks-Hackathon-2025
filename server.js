@@ -22,7 +22,7 @@ const pool = new Pool({
 });
 
 // JWT secret
-const JWT_SECRET = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1MjA4NDg4OH0.hhp8H4HrW13Nknh0l88XR-zTfnTc79GumxRlR3ojoLE';
+const JWT_SECRET = 'YOUR_JWT_SECRET_KEY_GENERATE_IN_CMD';
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
