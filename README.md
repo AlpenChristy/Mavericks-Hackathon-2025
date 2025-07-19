@@ -54,7 +54,7 @@ The application uses the following database credentials (hardcoded for simplicit
 - **DB_HOST**: localhost
 - **DB_PORT**: 5432
 - **DB_NAME**: rewear_app
-- **JWT_SECRET**: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1MjA4NDg4OH0.hhp8H4HrW13Nknh0l88XR-zTfnTc79GumxRlR3ojoLE
+- **JWT_SECRET**: ""
 
 ## Installation
 
